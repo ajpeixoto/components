@@ -45,6 +45,7 @@ import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -122,6 +123,7 @@ public class BulkV2Connection {
         }
         ConnectorConfig bulkV2Config = new ConnectorConfig();
         bulkV2Config.setSessionId(bulkConfig.getSessionId());
+        bulkV2Config.setSslContext(bulkConfig.getSslContext());
 
         String apiVersion = restEndpoint.substring(restEndpoint.lastIndexOf("/services/async/") + 16);
         // Replace rest endpoint with bulk v2 rest one.
@@ -430,10 +432,10 @@ public class BulkV2Connection {
                             ((InetSocketAddress) proxy.address()).getPort());
                     CredentialsProvider credsProvider = new BasicCredentialsProvider();
                     credsProvider.setCredentials(authScope, credentials);
-                    return HttpClients.custom().setDefaultCredentialsProvider(credsProvider).build();
+                    return HttpClients.custom().setSSLContext(config.getSslContext()).setDefaultCredentialsProvider(credsProvider).build();
                 }
             }
-            return HttpClients.createDefault();
+            return HttpClientBuilder.create().setSSLContext(config.getSslContext()).build();
         }
         return httpclient;
     }

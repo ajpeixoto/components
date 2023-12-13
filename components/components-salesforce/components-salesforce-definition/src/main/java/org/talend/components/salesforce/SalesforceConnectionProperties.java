@@ -13,14 +13,9 @@
 package org.talend.components.salesforce;
 
 import static org.talend.components.common.oauth.OAuth2FlowType.JWT_Flow;
-import static org.talend.components.salesforce.SalesforceDefinition.SOURCE_OR_SINK_CLASS;
-import static org.talend.components.salesforce.SalesforceDefinition.USE_CURRENT_JVM_PROPS;
-import static org.talend.components.salesforce.SalesforceDefinition.getSandboxedInstance;
+import static org.talend.components.salesforce.SalesforceDefinition.*;
 import static org.talend.daikon.properties.presentation.Widget.widget;
-import static org.talend.daikon.properties.property.PropertyFactory.newBoolean;
-import static org.talend.daikon.properties.property.PropertyFactory.newEnum;
-import static org.talend.daikon.properties.property.PropertyFactory.newInteger;
-import static org.talend.daikon.properties.property.PropertyFactory.newString;
+import static org.talend.daikon.properties.property.PropertyFactory.*;
 
 import org.talend.components.api.exception.ComponentException;
 import org.talend.components.api.properties.ComponentPropertiesImpl;
@@ -260,7 +255,14 @@ public class SalesforceConnectionProperties extends ComponentPropertiesImpl
                 case OAuth:
                     refreshOauth2Properties(form);
                     form.getWidget(userPassword).setHidden(true);
-                    form.getWidget(sslProperties).setHidden(true);
+                    form.getWidget(sslProperties).setHidden(false);
+                    sslForm = form.getChildForm(sslProperties.getName());
+                    if (sslForm != null) {
+                        sslForm.getWidget(sslProperties.mutualAuth.getName()).setVisible(true);
+                        //Use same keystore with JWT Auth
+                        sslForm.getWidget(sslProperties.keyStorePath.getName()).setVisible(false);
+                        sslForm.getWidget(sslProperties.keyStorePwd.getName()).setVisible(false);
+                    }
                     break;
                 default:
                     throw new ComponentException(
@@ -337,7 +339,7 @@ public class SalesforceConnectionProperties extends ComponentPropertiesImpl
 
     @Override
     public int getVersionNumber() {
-        return 5;
+        return 6;
     }
 
     @Override
@@ -379,6 +381,13 @@ public class SalesforceConnectionProperties extends ComponentPropertiesImpl
             oauth2FlowType.setPossibleValues(JWT_Flow);
             oauth2FlowType.setValue(JWT_Flow);
             migrated = true;
+        }
+
+        if(version < 6) {
+            if(loginType.getValue() != null && loginType.getValue() == LoginType.OAuth && sslProperties != null) {
+                sslProperties.mutualAuth.setValue(false);
+                migrated = true;
+            }
         }
 
         return migrated;
