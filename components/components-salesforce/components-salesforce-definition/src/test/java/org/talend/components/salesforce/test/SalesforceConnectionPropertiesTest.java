@@ -182,7 +182,7 @@ public class SalesforceConnectionPropertiesTest extends SalesforceTestBase {
 
         Form mainForm = properties.getForm(Form.MAIN);
         Form sslForm = mainForm.getChildForm(properties.sslProperties.getName());
-        assertFalse(sslForm.getWidget(properties.sslProperties.mutualAuth.getName()).isVisible());
+        assertTrue(sslForm.getWidget(properties.sslProperties.mutualAuth.getName()).isVisible());
         assertFalse(sslForm.getWidget(properties.sslProperties.keyStorePath.getName()).isVisible());
         assertFalse(sslForm.getWidget(properties.sslProperties.keyStorePwd.getName()).isVisible());
 

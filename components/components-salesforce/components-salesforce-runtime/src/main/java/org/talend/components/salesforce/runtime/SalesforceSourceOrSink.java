@@ -184,6 +184,21 @@ public class SalesforceSourceOrSink implements SalesforceRuntimeSourceOrSink, Sa
                         SalesforceConnectionProperties.ACTIVE_ENDPOINT);
             }
             endpoint = StringUtils.strip(endpoint, "\"");
+            if(connProps.sslProperties.mutualAuth.getValue()) {
+                try {
+                    if (!isOAuth){
+                        SSLContext sslContext = getSSLContext(connProps.sslProperties.keyStorePath.getValue(), connProps.sslProperties.keyStorePwd.getValue());
+                        config.setSslContext(sslContext);
+                    } else {
+                        if(config.getSslContext() == null) {
+                            config.setSslContext(SSLContext.getDefault());
+                        }
+                    }
+                } catch (Throwable e) {
+                    LOG.error(e.getMessage(), e);
+                    throw new ConnectionException(e.getMessage());
+                }
+            }
             if (isOAuth) {
                 SalesforceOAuthConnection oauthConnection = new SalesforceOAuthConnection(connProps, endpoint,
                         connProps.apiVersion.getValue());
@@ -201,22 +216,19 @@ public class SalesforceSourceOrSink implements SalesforceRuntimeSourceOrSink, Sa
         if (null == config.getSessionId()) {
             performLogin(config, connection);
         }
-
+        if(connProps.sslProperties.mutualAuth.getValue()) {
+            String soapEndpoint = config.getServiceEndpoint();
+            try {
+                //Add 8443 port for soap endpoint
+                config.setServiceEndpoint(updateURLForMutualForAuth(soapEndpoint, null));
+            } catch (Throwable e) {
+                LOG.error(e.getMessage(), e);
+                throw new ConnectionException(e.getMessage());
+            }
+        }
         if (openNewSession && isReuseSession()) {
             this.sessionId = config.getSessionId();
             this.serviceEndPoint = config.getServiceEndpoint();
-        }
-        if(!isOAuth && connProps.sslProperties.mutualAuth.getValue()){
-
-            String soapEndpoint = config.getServiceEndpoint();
-            try {
-                SSLContext sslContext = getSSLContext(connProps.sslProperties.keyStorePath.getValue(),connProps.sslProperties.keyStorePwd.getValue());
-                config.setSslContext(sslContext);
-                config.setServiceEndpoint(changeServicePort(soapEndpoint,MUTUAL_AUTHENTICATION_PORT));
-            } catch (Throwable e) {
-                LOG.error(e.getMessage(),e);
-                throw new ConnectionException(e.getMessage());
-            }
         }
         if (openNewSession && isReuseSession()) {
             if (this.sessionId != null && this.serviceEndPoint != null) {
@@ -635,6 +647,9 @@ public class SalesforceSourceOrSink implements SalesforceRuntimeSourceOrSink, Sa
     }
 
     protected SSLContext getSSLContext(String ksPath, String ksPwd) throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException, IOException, CertificateException, UnrecoverableKeyException {
+        if(StringUtils.isEmpty(ksPath)){
+            return SSLContext.getDefault();
+        }
         // Make a KeyStore from the PKCS-12 file
         KeyStore ks = KeyStore.getInstance("PKCS12");
         try (FileInputStream fis = new FileInputStream(ksPath)) {
@@ -651,11 +666,11 @@ public class SalesforceSourceOrSink implements SalesforceRuntimeSourceOrSink, Sa
         }
     }
 
-    public static String changeServicePort(String url, int port) throws URISyntaxException {
+    public static String updateURLForMutualForAuth(String url, String domainHost) throws URISyntaxException {
         URI uri = new URI(url);
         return new URI(
-                uri.getScheme(), uri.getUserInfo(), uri.getHost(),
-                port, uri.getPath(), uri.getQuery(), uri.getFragment()).toString();
+                uri.getScheme(), uri.getUserInfo(), domainHost==null?uri.getHost():domainHost,
+                MUTUAL_AUTHENTICATION_PORT, uri.getPath(), uri.getQuery(), uri.getFragment()).toString();
     }
 
 }
