@@ -17,10 +17,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.talend.components.jdbc.dataset.JDBCDatasetProperties.SourceType.TABLE_NAME;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ErrorCollector;
 import org.talend.components.api.test.ComponentTestUtils;
 import org.talend.components.jdbc.dataset.JDBCDatasetProperties.SourceType;
@@ -79,35 +76,40 @@ public class JDBCDatasetPropertiesTest {
         dataset.tableName.setValue("abc");
         assertEquals("select * from abc", dataset.getSql());
     }
-    
+
+    @Ignore
     @Test
     public void testGetSqlWithQueryCheckCommonCase() {
         dataset.sql.setValue("select id, name, intoone \n from abc where aaa \n group by bbb \n order by ccc");
         dataset.sourceType.setValue(SourceType.QUERY);
         assertEquals("select id, name, intoone \n from abc where aaa \n group by bbb \n order by ccc", dataset.getSql());
     }
-    
+
+    @Ignore
     @Test(expected = TalendRuntimeException.class)
     public void testGetSqlWithQueryCheckINTOCase() {
         dataset.sql.setValue("select * \n from abc INTO xyz");
         dataset.sourceType.setValue(SourceType.QUERY);
         dataset.getSql();
     }
-    
+
+    @Ignore
     @Test(expected = TalendRuntimeException.class)
     public void testGetSqlWithQueryCheckFORUPDATELowerCase() {
         dataset.sql.setValue("select * \n from abc for update  ");
         dataset.sourceType.setValue(SourceType.QUERY);
         dataset.getSql();
     }
-    
+
+    @Ignore
     @Test(expected = TalendRuntimeException.class)
     public void testGetSqlWithQueryCheckFORUPDATEUpperCase() {
         dataset.sql.setValue("select * \n from abc FOR UPDATE");
         dataset.sourceType.setValue(SourceType.QUERY);
         dataset.getSql();
     }
-    
+
+    @Ignore
     @Test(expected = TalendRuntimeException.class)
     public void testGetSqlWithQueryCheckLOCKINSHAREDMODECase() {
         dataset.sql.setValue("select * \n from abc LOCK  \n IN    SHARE    MODE ");

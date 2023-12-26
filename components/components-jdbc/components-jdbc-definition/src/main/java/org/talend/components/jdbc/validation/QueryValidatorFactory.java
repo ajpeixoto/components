@@ -10,7 +10,7 @@ public class QueryValidatorFactory {
     public static QueryValidator createValidator(final ValidationType validationType) {
         switch (validationType) {
         case CALCITE:
-            return new CalciteQueryValidator();
+            throw new RuntimeException("Don't support calcite sql check, please use pattern one.");
         default:
             return new PatternQueryValidator();
         }
