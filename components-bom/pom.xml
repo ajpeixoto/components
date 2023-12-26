@@ -18,7 +18,6 @@
     <properties>
         <daikon.version>8.4.4</daikon.version>
         <json-io.version>4.14.0-TALEND</json-io.version>
-
         <!-- repositories -->
         <talend_snapshots_deployment>
             https://artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceSnapshot/
@@ -33,7 +32,7 @@
         <avatica.avatica-metrics.version>${avatica.version}</avatica.avatica-metrics.version>
         <avatica.version>1.23.0</avatica.version>
         <antlr4-runtime.version>4.7</antlr4-runtime.version>
-        <avro.version>1.8.1</avro.version>
+        <avro.version>1.11.3</avro.version>
         <aws-java-sdk-cloudwatch.version>${aws.version}</aws-java-sdk-cloudwatch.version>
         <aws-java-sdk-core.version>${aws.version}</aws-java-sdk-core.version>
         <aws-java-sdk-dynamodb.version>${aws.version}</aws-java-sdk-dynamodb.version>
@@ -168,7 +167,7 @@
         <scala.version>2.13.10</scala.version>
         <slf4j.version>2.0.9</slf4j.version>
         <snakeyaml.version>2.0</snakeyaml.version>
-        <snappy-java.version>1.1.10.1</snappy-java.version>
+        <snappy-java.version>1.1.10.5</snappy-java.version>
         <snowflake-jdbc.version>3.13.30</snowflake-jdbc.version>
         <spark.version>3.3.3</spark.version>
         <ivy.version>2.5.2</ivy.version>
@@ -1122,7 +1121,6 @@
             <dependency>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-mapred</artifactId>
-                <classifier>hadoop2</classifier>
                 <version>${avro.version}</version>
             </dependency>
             <dependency>
