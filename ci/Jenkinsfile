@@ -132,7 +132,7 @@ spec:
              sh '''#!/bin/bash
              docker version
              echo $ARTIFACTORY_PASSWORD | docker login $ARTIFACTORY_REGISTRY -u $ARTIFACTORY_LOGIN --password-stdin
-             mvn clean -B -U -V install
+             mvn clean -B -U -V install -s ci/settings.xml
              '''
            }
         }
