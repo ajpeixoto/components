@@ -176,15 +176,15 @@
             <id>mapr-releases-repository-proxy</id>
             <url>https://artifacts-zl.talend.com/nexus/content/repositories/mapr_public/</url>
         </repository>
-        <!-- THIS REPOSITORY SEEMS DOWN - The artifacts it contained which we need seem to be present in the talend-update repo
+        <!-- THIS REPOSITORY SEEMS DOWN - The artifacts it contained which we need seem to be present in the proxy of redshit repo
         <repository>
             <id>redshift</id>
             <url>https://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release</url>
         </repository>
         -->
         <repository>
-            <id>talend-update</id>
-            <url>https://artifacts-zl.talend.com/nexus/content/repositories/talend-update/</url>
+            <id>redshift-proxy</id>
+            <url>https://artifacts-zl.talend.com/nexus/content/repositories/redshift</url>
         </repository>
     </repositories>
 

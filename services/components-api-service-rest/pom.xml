@@ -512,6 +512,7 @@
         </profile>
     </profiles>
 
+
     <repositories>
         <repository>
             <id>spring-releases</id>
@@ -546,4 +547,16 @@
             </snapshots>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>releases</id>
+          <url>https://artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceRelease/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
