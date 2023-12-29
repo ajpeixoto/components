@@ -1,1 +1,1 @@
-clean install clean
+clean install clean -s ../../settings.xml

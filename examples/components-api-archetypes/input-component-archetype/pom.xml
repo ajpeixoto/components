@@ -47,6 +47,7 @@
 				<includes>
 					<include>archetype-resources/__rootArtifactId__-definition/pom.xml</include>
 					<include>archetype-resources/__rootArtifactId__-runtime/pom.xml</include>
+					<include>archetype-resources/settings.xml</include>
 				</includes>
 			</resource>
 			<resource>
