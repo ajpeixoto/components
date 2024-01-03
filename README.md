@@ -96,6 +96,6 @@ For pull request contribution please make sure to follow the review process expl
 
 ## License
 
-Copyright (c) 2006-2023 Talend
+Copyright (c) 2006-2024 Talend
 
 Licensed under the Apache V2 License
