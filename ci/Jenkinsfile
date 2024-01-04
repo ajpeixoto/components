@@ -150,7 +150,7 @@ spec:
              sh '''#!/bin/bash
              docker version
              echo $ARTIFACTORY_PASSWORD | docker login $ARTIFACTORY_REGISTRY -u $ARTIFACTORY_LOGIN --password-stdin
-             mvn clean -B -U -V \
+             mvn clean -B -U -V -s ci/settings.xml \
                 -Dsalesforce.user=${SALESFORCE_USERNAME} \
                 -Dsalesforce.password=${SALESFORCE_PASSWORD} \
                 -Dsalesforce.key=${SALESFORCE_SECURITY_TOKEN} \
