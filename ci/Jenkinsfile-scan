@@ -40,6 +40,8 @@ pipeline {
     stage('Prepare') {
       steps {
         configFileProvider([configFile(fileId: 'maven-settings-nexus-zl', variable: 'MAVEN_SETTINGS')]) {
+          echo 'Install tools'
+          sh 'bash --login ci/resources/install-tools.sh'
           sh '''#! /bin/bash
                         # Pass the maven credentials to the sourceclear command for the maven build, using an agent configuration file
                         # Unfortunately there seems to be no simpler way

@@ -23,7 +23,7 @@ kind: Pod
 spec:
     containers:
     - name: main
-      image: artifactory.datapwn.com/tlnd-docker-prod/talend/common/tsbi/jdk8-builder-base:3.0.0-20220719061045
+      image: artifactory.datapwn.com/tlnd-docker-prod/talend/common/tsbi/custom-builder:3.1.10-20230315171124
       tty: true
       command: 
       - cat
@@ -85,6 +85,8 @@ spec:
             steps {
                 container("main") {
                     script {
+                        echo 'Install tools'
+                        sh 'bash --login ci/resources/install-tools.sh'
                         configFileProvider([mavenSettings]) {
                             // This builds the service ZIP file
                             sh '''#!/bin/bash
