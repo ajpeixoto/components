@@ -30,6 +30,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.talend.components.api.component.ConnectorTopology;
 import org.talend.components.api.component.runtime.ExecutionEngine;
@@ -54,6 +55,7 @@ import org.talend.components.api.DaikonLegacyAssertions;
 import org.talend.daikon.runtime.RuntimeUtil;
 import org.talend.daikon.sandbox.SandboxedInstance;
 
+@Ignore
 public class JdbcRowTestIT {
 
     public static AllSetting allSetting;

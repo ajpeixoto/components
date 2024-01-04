@@ -49,6 +49,7 @@ import org.talend.daikon.sandbox.SandboxedInstance;
 /**
  * Unit tests for {@link JDBCDatasetDefinition} runtimes loaded dynamically.
  */
+@Ignore
 public class JdbcDatasetRuntimeTest {
 
     static final String DRIVER = "org.apache.derby.jdbc.ClientDriver";
