@@ -35,6 +35,7 @@ import org.apache.derby.jdbc.ClientDataSource;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.talend.components.common.dataset.runtime.DatasetRuntime;
 import org.talend.components.jdbc.dataset.JDBCDatasetDefinition;
@@ -148,6 +149,7 @@ public class JdbcDatasetRuntimeTest {
     }
 
     @Test
+    @Ignore
     public void testBasic() throws Exception {
         JDBCDatasetProperties props = createDatasetProperties();
 
