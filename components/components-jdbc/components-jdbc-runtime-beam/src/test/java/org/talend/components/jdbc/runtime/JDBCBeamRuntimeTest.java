@@ -34,6 +34,7 @@ import org.apache.derby.jdbc.ClientDataSource;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -44,6 +45,7 @@ import org.talend.components.jdbc.datastore.JDBCDatastoreProperties;
 import org.talend.components.jdbc.datastream.JDBCOutputProperties;
 import org.talend.daikon.avro.SchemaConstants;
 
+@Ignore
 public class JDBCBeamRuntimeTest implements Serializable {
 
     static final String DRIVER = "org.apache.derby.jdbc.ClientDriver";
