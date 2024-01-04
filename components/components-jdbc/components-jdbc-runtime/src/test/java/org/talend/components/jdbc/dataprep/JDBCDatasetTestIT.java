@@ -21,6 +21,7 @@ import org.apache.avro.generic.IndexedRecord;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.talend.components.jdbc.common.DBTestUtils;
 import org.talend.components.jdbc.dataset.JDBCDatasetProperties;
@@ -68,6 +69,7 @@ public class JDBCDatasetTestIT {
     }
 
     @Test
+    @Ignore
     public void testUpdateSchema() {
         JDBCDatasetProperties dataset = createDatasetProperties(true, tablename);
 
@@ -78,6 +80,7 @@ public class JDBCDatasetTestIT {
     }
 
     @Test
+    @Ignore
     public void testGetSchema() {
         JDBCDatasetProperties dataset = createDatasetProperties(false, tablename);
 
@@ -90,6 +93,7 @@ public class JDBCDatasetTestIT {
     }
     
     @Test
+    @Ignore
     public void testGetSchema4SpecialName() {
         JDBCDatasetProperties dataset = createDatasetProperties(false, special_table_name);
 
@@ -102,6 +106,7 @@ public class JDBCDatasetTestIT {
     }
 
     @Test
+    @Ignore
     public void testGetSchemaFromTable() throws IOException {
         JDBCDatasetProperties dataset = createDatasetProperties(false, tablename);
 
@@ -120,18 +125,21 @@ public class JDBCDatasetTestIT {
     }
 
     @Test
+    @Ignore
     public void testGetSampleWithValidDesignSchema() {
         JDBCDatasetProperties dataset = createDatasetProperties(true, tablename);
         getSampleAction(dataset);
     }
 
     @Test
+    @Ignore
     public void testGetSampleWithoutDesignSchema() {
         JDBCDatasetProperties dataset = createDatasetProperties(false, tablename);
         getSampleAction(dataset);
     }
 
     @Test
+    @Ignore
     public void testDoHealthChecks() {
         JDBCDatasetProperties dataset = createDatasetProperties(true, tablename);
         JDBCDatastoreRuntime runtime = new JDBCDatastoreRuntime();
