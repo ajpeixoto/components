@@ -26,6 +26,8 @@ import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.talend.components.api.component.SupportedProduct;
 import org.talend.components.api.component.runtime.BoundedReader;
 import org.talend.components.api.component.runtime.Reader;
@@ -38,6 +40,8 @@ import org.talend.components.salesforce.datastore.SalesforceDatastoreProperties;
 import org.talend.components.salesforce.runtime.DisableIfMissingConfig;
 
 public class SalesforceInputTestIT {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SalesforceInputTestIT.class);
+
     @ClassRule
     public static final TestRule DISABLE_IF_NEEDED = new DisableIfMissingConfig();
 
@@ -78,6 +82,7 @@ public class SalesforceInputTestIT {
             // Map<String, Object> returnMap = reader.getReturnValues();
             // Assert.assertEquals(3, returnMap.get(ComponentDefinition.RETURN_TOTAL_RECORD_COUNT));
         } catch (Exception e) {
+            LOGGER.error("Caught an error:", e);
             Assert.fail(e.getMessage());
         } finally {
             if (reader != null) {
@@ -236,6 +241,7 @@ public class SalesforceInputTestIT {
             // Map<String, Object> returnMap = reader.getReturnValues();
             // Assert.assertEquals(3, returnMap.get(ComponentDefinition.RETURN_TOTAL_RECORD_COUNT));
         } catch (Exception e) {
+            LOGGER.error("Caught an error:", e);
             Assert.fail(e.getMessage());
         } finally {
             if (reader != null) {
