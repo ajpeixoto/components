@@ -330,14 +330,14 @@ public class CommonUtils {
     }
 
     /**
-     * Overloaded method for query validation, which will use {@linkplain ValidationType.CALCITE} by default.
+     * Overloaded method for query validation, which will use {@linkplain ValidationType.PATTERN} by default.
      * 
      * @param query to validate
      * @return valid query
      * @throws TalendRuntimeException if query is not valid
      */
     public static String validateQuery(String query) {
-        return validateQuery(query, ValidationType.CALCITE);
+        return validateQuery(query, ValidationType.PATTERN);
     }
 
     public static List<String> getAllSchemaFieldDBNames(Schema schema) {

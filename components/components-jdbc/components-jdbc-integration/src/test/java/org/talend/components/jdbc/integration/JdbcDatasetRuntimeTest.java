@@ -35,7 +35,6 @@ import org.apache.derby.jdbc.ClientDataSource;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.talend.components.common.dataset.runtime.DatasetRuntime;
 import org.talend.components.jdbc.dataset.JDBCDatasetDefinition;
@@ -49,7 +48,6 @@ import org.talend.daikon.sandbox.SandboxedInstance;
 /**
  * Unit tests for {@link JDBCDatasetDefinition} runtimes loaded dynamically.
  */
-@Ignore
 public class JdbcDatasetRuntimeTest {
 
     static final String DRIVER = "org.apache.derby.jdbc.ClientDriver";
@@ -150,7 +148,6 @@ public class JdbcDatasetRuntimeTest {
     }
 
     @Test
-    @Ignore
     public void testBasic() throws Exception {
         JDBCDatasetProperties props = createDatasetProperties();
 

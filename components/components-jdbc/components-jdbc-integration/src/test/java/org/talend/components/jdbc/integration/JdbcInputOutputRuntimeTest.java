@@ -16,7 +16,6 @@ package org.talend.components.jdbc.integration;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.talend.components.api.component.ConnectorTopology;
 import org.talend.components.api.component.runtime.ExecutionEngine;
@@ -28,7 +27,6 @@ import org.talend.daikon.runtime.RuntimeInfo;
 import org.talend.daikon.runtime.RuntimeUtil;
 import org.talend.daikon.sandbox.SandboxedInstance;
 
-@Ignore
 public class JdbcInputOutputRuntimeTest {
 
     @Test

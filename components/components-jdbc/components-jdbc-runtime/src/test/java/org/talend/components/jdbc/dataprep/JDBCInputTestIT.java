@@ -24,7 +24,6 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.talend.components.api.component.ComponentDefinition;
 import org.talend.components.api.component.runtime.Reader;
@@ -71,7 +70,6 @@ public class JDBCInputTestIT {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Test
-    @Ignore
     public void testReader() {
         Reader reader = null;
         try {
@@ -127,7 +125,6 @@ public class JDBCInputTestIT {
 
     @SuppressWarnings({ "rawtypes" })
     @Test
-    @Ignore
     public void testType() throws Exception {
         JDBCInputDefinition definition = new JDBCInputDefinition();
         JDBCInputProperties properties = createCommonJDBCInputProperties(definition);
