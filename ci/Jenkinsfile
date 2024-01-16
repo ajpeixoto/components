@@ -121,7 +121,7 @@ pipeline {
             docker version
             echo $ARTIFACTORY_PASSWORD | docker login $ARTIFACTORY_REGISTRY -u $ARTIFACTORY_LOGIN --password-stdin
 
-            mvn clean install \
+            mvn clean install -s ci/settings.xml\
               --update-snapshots \
               --batch-mode \
               --show-version \
