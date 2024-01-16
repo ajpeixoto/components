@@ -291,7 +291,7 @@
                         <!-- settings.xml and repo are used for pax tests on branch build that
                             mirror the talend_nexus repo -->
                         <org.ops4j.pax.url.mvn.repositories>
-                            +https://artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceSnapshot@snapshots@noreleases@id=talend_nexus,https://artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceRelease@id=talrelease
+                            +https://${env.NEXUS_USER}:${env.NEXUS_PASSWORD}@artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceSnapshot@snapshots@noreleases@id=talend_nexus,https://${env.NEXUS_USER}:${env.NEXUS_PASSWORD}@artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceRelease@id=oss_releases
                         </org.ops4j.pax.url.mvn.repositories>
                     </systemProperties>
                 </configuration>
