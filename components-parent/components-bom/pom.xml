@@ -1276,7 +1276,7 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.talend.libraries</groupId>
+                <groupId>org.talend.components.lib</groupId>
                 <artifactId>marketo-soap-sdk</artifactId>
                 <version>${marketo-soap-sdk.version}</version>
             </dependency>
@@ -1286,7 +1286,7 @@
                 <version>${talend-proxy.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.talend.libraries</groupId>
+                <groupId>org.talend.components.lib</groupId>
                 <artifactId>talend_file_enhanced_20070724</artifactId>
                 <version>${talend_file_enhanced_20070724.version}</version>
             </dependency>

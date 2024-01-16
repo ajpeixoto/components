@@ -26,7 +26,7 @@
         </dependency>
         <!-- marketo runtime specific dependencies -->
         <dependency>
-            <groupId>org.talend.libraries</groupId>
+            <groupId>org.talend.components.lib</groupId>
             <artifactId>marketo-soap-sdk</artifactId>
         </dependency>
         <dependency>
